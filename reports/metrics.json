@@ -1,0 +1,8 @@
+{
+  "best_k": 5,
+  "silhouette": 0.5546571631111091,
+  "davies_bouldin": 0.5722356162263352,
+  "calinski_harabasz": 248.64932001536357,
+  "stability_mean": 0.9761797654934602,
+  "stability_std": 0.018455094137112046
+}
