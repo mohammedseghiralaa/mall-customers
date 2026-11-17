@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from scipy.cluster.hierarchy import dendrogram
 from mall_customers.config import FIGURES_DIR
 
 
@@ -29,4 +30,18 @@ def plot_clusters(X, labels, centers):
     plt.title("Customer clusters")
     plt.legend()
     _save("clusters")
+    plt.show()
+
+
+def plot_dendrogram(Z, k):
+    """Dendrogram with a red line showing where the tree is cut for k clusters."""
+    threshold = (Z[-k, 2] + Z[-(k - 1), 2]) / 2
+    plt.figure(figsize=(11, 5))
+    dendrogram(Z, truncate_mode="lastp", p=30, color_threshold=threshold)
+    plt.axhline(threshold, color="red", linestyle="--", label=f"cut for k={k}")
+    plt.title("Hierarchical clustering dendrogram (Ward)")
+    plt.xlabel("Cluster size (number of customers)")
+    plt.ylabel("Merge distance")
+    plt.legend()
+    _save("dendrogram")
     plt.show()
