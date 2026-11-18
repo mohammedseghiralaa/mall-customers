@@ -34,11 +34,12 @@ def plot_clusters(X, labels, centers):
 
 
 def plot_dendrogram(Z, k):
-    """Dendrogram with a red line showing where the tree is cut for k clusters."""
-    threshold = (Z[-k, 2] + Z[-(k - 1), 2]) / 2
+    threshold = (Z[-k, 2] + Z[-(k - 1), 2]) / 2        # 1. computes the height (6.9 for k=5)
     plt.figure(figsize=(11, 5))
-    dendrogram(Z, truncate_mode="lastp", p=30, color_threshold=threshold)
-    plt.axhline(threshold, color="red", linestyle="--", label=f"cut for k={k}")
+    dendrogram(Z, truncate_mode="lastp", p=30,
+               color_threshold=threshold)               # 2. colors the branches below the line
+    plt.axhline(threshold, color="red", linestyle="--",
+                label=f"cut for k={k}")                 # 3. draws the red line
     plt.title("Hierarchical clustering dendrogram (Ward)")
     plt.xlabel("Cluster size (number of customers)")
     plt.ylabel("Merge distance")
